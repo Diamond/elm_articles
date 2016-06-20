@@ -1,0 +1,39 @@
+var _user$project$Components_ArticleList$renderArticle = function (article) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Article$view(article)
+			]));
+};
+var _user$project$Components_ArticleList$articles = _elm_lang$core$Native_List.fromArray(
+	[
+		{title: 'Article 1', url: 'http://google.com', postedBy: 'Author', postedOn: '06/20/16', favorite: false},
+		{title: 'Article 2', url: 'http://google.com', postedBy: 'Author 2', postedOn: '06/20/16', favorite: false},
+		{title: 'Article 3', url: 'http://google.com', postedBy: 'Author 3', postedOn: '06/20/16', favorite: false}
+	]);
+var _user$project$Components_ArticleList$renderArticles = A2(_elm_lang$core$List$map, _user$project$Components_ArticleList$renderArticle, _user$project$Components_ArticleList$articles);
+var _user$project$Components_ArticleList$view = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('article-list')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$h2,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Article List')
+				])),
+			A2(
+			_elm_lang$html$Html$ul,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_user$project$Components_ArticleList$renderArticles)
+		]));
