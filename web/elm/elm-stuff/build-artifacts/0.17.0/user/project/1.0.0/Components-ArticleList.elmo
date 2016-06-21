@@ -1,0 +1,74 @@
+var _user$project$Components_ArticleList$initialModel = {
+	articles: _elm_lang$core$Native_List.fromArray(
+		[])
+};
+var _user$project$Components_ArticleList$renderArticle = function (article) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Article$view(article)
+			]));
+};
+var _user$project$Components_ArticleList$renderArticles = function (articles) {
+	return A2(_elm_lang$core$List$map, _user$project$Components_ArticleList$renderArticle, articles.articles);
+};
+var _user$project$Components_ArticleList$articles = {
+	articles: _elm_lang$core$Native_List.fromArray(
+		[
+			{title: 'Article 1', url: 'http://google.com', postedBy: 'Author', postedOn: '06/20/16'},
+			{title: 'Article 2', url: 'http://google.com', postedBy: 'Author 2', postedOn: '06/20/16'},
+			{title: 'Article 3', url: 'http://google.com', postedBy: 'Author 3', postedOn: '06/20/16'}
+		])
+};
+var _user$project$Components_ArticleList$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'NoOp') {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			return {ctor: '_Tuple2', _0: _user$project$Components_ArticleList$articles, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _user$project$Components_ArticleList$Model = function (a) {
+	return {articles: a};
+};
+var _user$project$Components_ArticleList$Fetch = {ctor: 'Fetch'};
+var _user$project$Components_ArticleList$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('article-list')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Article List')
+					])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Components_ArticleList$Fetch),
+						_elm_lang$html$Html_Attributes$class('btn btn-primary')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Fetch Articles')
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_user$project$Components_ArticleList$renderArticles(model))
+			]));
+};
+var _user$project$Components_ArticleList$NoOp = {ctor: 'NoOp'};
