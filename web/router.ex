@@ -24,4 +24,9 @@ defmodule ElmArticles.Router do
 
     resources "/articles", ArticleController, only: [:index]
   end
+
+  # Other scopes may use custom stacks.
+  # scope "/api", ElmArticles do
+  #   pipe_through :api
+  # end
 end

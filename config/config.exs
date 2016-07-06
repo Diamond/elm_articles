@@ -5,12 +5,15 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :elm_articles,
+  ecto_repos: [ElmArticles.Repo]
+
 # Configures the endpoint
 config :elm_articles, ElmArticles.Endpoint,
   url: [host: "localhost"],
-  root: Path.dirname(__DIR__),
-  secret_key_base: "5s6IUdaPsVTL6STJVLhSccCwn11+SImniaJJq+7mz1GyBwNaVKoo3gVIzp+wKSNc",
-  render_errors: [accepts: ~w(html json)],
+  secret_key_base: "CjMbZzESOTAZByaF/JNAEgvwtr3GCpV9iPpRy0lN1woczfGet3tW5UAx7GzEp0ul",
+  render_errors: [view: ElmArticles.ErrorView, accepts: ~w(html json)],
   pubsub: [name: ElmArticles.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -22,8 +25,3 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
-
-# Configure phoenix generators
-config :phoenix, :generators,
-  migration: true,
-  binary_id: false

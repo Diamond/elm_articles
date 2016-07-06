@@ -4,14 +4,15 @@ defmodule ElmArticles do
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec, warn: false
+    import Supervisor.Spec
 
+    # Define workers and child supervisors to be supervised
     children = [
-      # Start the endpoint when the application starts
-      supervisor(ElmArticles.Endpoint, []),
       # Start the Ecto repository
       supervisor(ElmArticles.Repo, []),
-      # Here you could define other workers and supervisors as children
+      # Start the endpoint when the application starts
+      supervisor(ElmArticles.Endpoint, []),
+      # Start your own worker by calling: ElmArticles.Worker.start_link(arg1, arg2, arg3)
       # worker(ElmArticles.Worker, [arg1, arg2, arg3]),
     ]
 

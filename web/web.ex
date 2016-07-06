@@ -22,7 +22,7 @@ defmodule ElmArticles.Web do
 
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
     end
   end
 
@@ -32,7 +32,7 @@ defmodule ElmArticles.Web do
 
       alias ElmArticles.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
       import ElmArticles.Router.Helpers
       import ElmArticles.Gettext
@@ -67,7 +67,7 @@ defmodule ElmArticles.Web do
 
       alias ElmArticles.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
       import ElmArticles.Gettext
     end
   end
