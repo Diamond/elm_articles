@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Dom.LowLevel",
+    "comment": " This library backs user facing libraries like `elm-lang/mouse` and\n`elm-lang/window` that expose the functionality here in a much nicer way. In\n99% of cases, you will find what you want in those libraries, not here.\n\n# Global Event Listeners\n@docs onDocument, onWindow\n\n",
+    "aliases": [],
+    "types": [],
+    "values": [
+      {
+        "name": "onDocument",
+        "comment": " Add an event handler on the `document`. The resulting task will never end,\nand when you kill the process it is on, it will detach the relevant JavaScript\nevent listener.\n",
+        "type": "String -> Json.Decode.Decoder msg -> (msg -> Task.Task Basics.Never ()) -> Task.Task Basics.Never Basics.Never"
+      },
+      {
+        "name": "onWindow",
+        "comment": " Add an event handler on `window`. The resulting task will never end, and\nwhen you kill the process it is on, it will detach the relevant JavaScript\nevent listener.\n",
+        "type": "String -> Json.Decode.Decoder msg -> (msg -> Task.Task Basics.Never ()) -> Task.Task Basics.Never Basics.Never"
+      }
+    ],
+    "generated-with-elm-version": "0.17.0"
+  }
+]

@@ -1,0 +1,151 @@
+var _sporto$hop$Hop_Matchers$str = _Bogdanp$elm_combine$Combine$regex('[^/]+');
+var _sporto$hop$Hop_Matchers$int = _Bogdanp$elm_combine$Combine_Num$int;
+var _sporto$hop$Hop_Matchers$parserWithBeginningAndEnd = function (parser) {
+	return A2(_Bogdanp$elm_combine$Combine_Infix_ops['<*'], parser, _Bogdanp$elm_combine$Combine$end);
+};
+var _sporto$hop$Hop_Matchers$match1 = F2(
+	function (constructor, segment1) {
+		var constructor$ = function (_p0) {
+			var _p1 = _p0;
+			return constructor;
+		};
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor$,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				_Bogdanp$elm_combine$Combine$skip(
+					_Bogdanp$elm_combine$Combine$string(segment1))));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1])
+		};
+	});
+var _sporto$hop$Hop_Matchers$match2 = F3(
+	function (constructor, segment1, parser1) {
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				A2(
+					_Bogdanp$elm_combine$Combine_Infix_ops['*>'],
+					_Bogdanp$elm_combine$Combine$string(segment1),
+					parser1)));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1])
+		};
+	});
+var _sporto$hop$Hop_Matchers$match3 = F4(
+	function (constructor, segment1, parser1, segment2) {
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				A2(
+					_Bogdanp$elm_combine$Combine_Infix_ops['<*'],
+					A2(
+						_Bogdanp$elm_combine$Combine_Infix_ops['*>'],
+						_Bogdanp$elm_combine$Combine$string(segment1),
+						parser1),
+					_Bogdanp$elm_combine$Combine$string(segment2))));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1, segment2])
+		};
+	});
+var _sporto$hop$Hop_Matchers$match4 = F5(
+	function (constructor, segment1, parser1, segment2, parser2) {
+		var constructor$ = function (_p2) {
+			var _p3 = _p2;
+			return A2(constructor, _p3._0, _p3._1);
+		};
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor$,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				A2(
+					_Bogdanp$elm_combine$Combine$andThen,
+					A2(
+						_Bogdanp$elm_combine$Combine_Infix_ops['*>'],
+						_Bogdanp$elm_combine$Combine$string(segment1),
+						parser1),
+					function (r) {
+						return A2(
+							_Bogdanp$elm_combine$Combine$map,
+							function (x) {
+								return {ctor: '_Tuple2', _0: r, _1: x};
+							},
+							A2(
+								_Bogdanp$elm_combine$Combine_Infix_ops['*>'],
+								_Bogdanp$elm_combine$Combine$string(segment2),
+								parser2));
+					})));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1, segment2])
+		};
+	});
+var _sporto$hop$Hop_Matchers$nested1 = F3(
+	function (constructor, segment1, children) {
+		var childrenParsers = A2(
+			_elm_lang$core$List$map,
+			function (_) {
+				return _.parser;
+			},
+			children);
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				A2(
+					_Bogdanp$elm_combine$Combine$andThen,
+					_Bogdanp$elm_combine$Combine$string(segment1),
+					function (x) {
+						return _Bogdanp$elm_combine$Combine$choice(childrenParsers);
+					})));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1])
+		};
+	});
+var _sporto$hop$Hop_Matchers$nested2 = F4(
+	function (constructor, segment1, parser1, children) {
+		var constructor$ = function (_p4) {
+			var _p5 = _p4;
+			return A2(constructor, _p5._0, _p5._1);
+		};
+		var childrenParsers = A2(
+			_elm_lang$core$List$map,
+			function (_) {
+				return _.parser;
+			},
+			children);
+		var parser = A2(
+			_Bogdanp$elm_combine$Combine$map,
+			constructor$,
+			_sporto$hop$Hop_Matchers$parserWithBeginningAndEnd(
+				A2(
+					_Bogdanp$elm_combine$Combine$andThen,
+					A2(
+						_Bogdanp$elm_combine$Combine_Infix_ops['*>'],
+						_Bogdanp$elm_combine$Combine$string(segment1),
+						parser1),
+					function (r) {
+						return A2(
+							_Bogdanp$elm_combine$Combine$map,
+							function (x) {
+								return {ctor: '_Tuple2', _0: r, _1: x};
+							},
+							_Bogdanp$elm_combine$Combine$choice(childrenParsers));
+					})));
+		return {
+			parser: parser,
+			segments: _elm_lang$core$Native_List.fromArray(
+				[segment1])
+		};
+	});

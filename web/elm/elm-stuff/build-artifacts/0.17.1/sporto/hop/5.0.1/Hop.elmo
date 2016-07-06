@@ -1,0 +1,64 @@
+var _sporto$hop$Hop$clearQuery = function (location) {
+	return _elm_lang$core$Native_Utils.update(
+		location,
+		{query: _elm_lang$core$Dict$empty});
+};
+var _sporto$hop$Hop$removeQuery = F2(
+	function (key, location) {
+		var updatedQuery = A2(_elm_lang$core$Dict$remove, key, location.query);
+		return _elm_lang$core$Native_Utils.update(
+			location,
+			{query: updatedQuery});
+	});
+var _sporto$hop$Hop$setQuery = F2(
+	function (query, location) {
+		return _elm_lang$core$Native_Utils.update(
+			location,
+			{query: query});
+	});
+var _sporto$hop$Hop$addQuery = F2(
+	function (query, location) {
+		var updatedQuery = A2(_elm_lang$core$Dict$union, query, location.query);
+		return _elm_lang$core$Native_Utils.update(
+			location,
+			{query: updatedQuery});
+	});
+var _sporto$hop$Hop$makeUrlFromLocation = F2(
+	function (config, location) {
+		var fullPath = A2(_sporto$hop$Hop_Location$locationToFullPath, config, location);
+		var path = _elm_lang$core$Native_Utils.eq(fullPath, '') ? '/' : fullPath;
+		return path;
+	});
+var _sporto$hop$Hop$makeUrl = F2(
+	function (config, route) {
+		return A2(
+			_sporto$hop$Hop$makeUrlFromLocation,
+			config,
+			_sporto$hop$Hop_Location$locationFromUser(route));
+	});
+var _sporto$hop$Hop$matcherToPath = F2(
+	function (matcher, inputs) {
+		var makeSegment = F2(
+			function (segment, input) {
+				return A2(_elm_lang$core$Basics_ops['++'], segment, input);
+			});
+		var inputs$ = A2(
+			_elm_lang$core$List$append,
+			inputs,
+			_elm_lang$core$Native_List.fromArray(
+				['']));
+		var path = A2(
+			_elm_lang$core$String$join,
+			'',
+			A3(_elm_lang$core$List$map2, makeSegment, matcher.segments, inputs$));
+		return path;
+	});
+var _sporto$hop$Hop$matchUrl = F2(
+	function (config, url) {
+		var location = A2(_sporto$hop$Hop_Location$fromUrl, config, url);
+		return {
+			ctor: '_Tuple2',
+			_0: A2(_sporto$hop$Hop_Matching$matchLocation, config, location),
+			_1: location
+		};
+	});

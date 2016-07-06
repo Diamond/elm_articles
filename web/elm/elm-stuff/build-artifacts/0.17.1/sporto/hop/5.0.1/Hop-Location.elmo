@@ -1,0 +1,187 @@
+var _sporto$hop$Hop_Location$queryKVtoTuple = function (kv) {
+	var splitted = A2(_elm_lang$core$String$split, '=', kv);
+	var first = A2(
+		_elm_lang$core$Maybe$withDefault,
+		'',
+		_elm_lang$core$List$head(splitted));
+	var firstDecoded = _evancz$elm_http$Http$uriDecode(first);
+	var second = A2(
+		_elm_lang$core$Maybe$withDefault,
+		'',
+		_elm_lang$core$List$head(
+			A2(_elm_lang$core$List$drop, 1, splitted)));
+	var secondDecoded = _evancz$elm_http$Http$uriDecode(second);
+	return {ctor: '_Tuple2', _0: firstDecoded, _1: secondDecoded};
+};
+var _sporto$hop$Hop_Location$extractQuery = function (route) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		'',
+		_elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$drop,
+				1,
+				A2(_elm_lang$core$String$split, '?', route))));
+};
+var _sporto$hop$Hop_Location$parseQuery = function (route) {
+	return _elm_lang$core$Dict$fromList(
+		A2(
+			_elm_lang$core$List$map,
+			_sporto$hop$Hop_Location$queryKVtoTuple,
+			A2(
+				_elm_lang$core$List$filter,
+				function (_p0) {
+					return _elm_lang$core$Basics$not(
+						_elm_lang$core$String$isEmpty(_p0));
+				},
+				A2(
+					_elm_lang$core$String$split,
+					'&',
+					_sporto$hop$Hop_Location$extractQuery(route)))));
+};
+var _sporto$hop$Hop_Location$extractPath = function (route) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		'',
+		_elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$String$split,
+				'?',
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					'',
+					_elm_lang$core$List$head(
+						_elm_lang$core$List$reverse(
+							A2(_elm_lang$core$String$split, '#', route)))))));
+};
+var _sporto$hop$Hop_Location$parsePath = function (route) {
+	return A2(
+		_elm_lang$core$List$filter,
+		function (segment) {
+			return _elm_lang$core$Basics$not(
+				_elm_lang$core$String$isEmpty(segment));
+		},
+		A2(
+			_elm_lang$core$String$split,
+			'/',
+			_sporto$hop$Hop_Location$extractPath(route)));
+};
+var _sporto$hop$Hop_Location$parse = function (route) {
+	return {
+		path: _sporto$hop$Hop_Location$parsePath(route),
+		query: _sporto$hop$Hop_Location$parseQuery(route)
+	};
+};
+var _sporto$hop$Hop_Location$fromUrlString = F2(
+	function (config, href) {
+		var withoutProtocol = A2(
+			_elm_lang$core$Maybe$withDefault,
+			'',
+			_elm_lang$core$List$head(
+				_elm_lang$core$List$reverse(
+					A2(_elm_lang$core$String$split, '//', href))));
+		var withoutDomain = A2(
+			_elm_lang$core$String$append,
+			'/',
+			A2(
+				_elm_lang$core$String$join,
+				'/',
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$List$tail(
+						A2(_elm_lang$core$String$split, '/', withoutProtocol)))));
+		return config.hash ? A2(
+			_elm_lang$core$Maybe$withDefault,
+			'',
+			_elm_lang$core$List$head(
+				A2(
+					_elm_lang$core$List$drop,
+					1,
+					A2(_elm_lang$core$String$split, '#', withoutDomain)))) : A2(
+			_elm_lang$core$Maybe$withDefault,
+			'',
+			_elm_lang$core$List$head(
+				A2(_elm_lang$core$String$split, '#', withoutDomain)));
+	});
+var _sporto$hop$Hop_Location$locationStringWithoutBase = F2(
+	function (config, locationString) {
+		var regex = _elm_lang$core$Regex$regex(config.basePath);
+		return A4(
+			_elm_lang$core$Regex$replace,
+			_elm_lang$core$Regex$AtMost(1),
+			regex,
+			_elm_lang$core$Basics$always(''),
+			locationString);
+	});
+var _sporto$hop$Hop_Location$fromUrl = F2(
+	function (config, href) {
+		var relevantLocationString = A2(_sporto$hop$Hop_Location$fromUrlString, config, href);
+		return config.hash ? _sporto$hop$Hop_Location$parse(relevantLocationString) : _sporto$hop$Hop_Location$parse(
+			A2(_sporto$hop$Hop_Location$locationStringWithoutBase, config, relevantLocationString));
+	});
+var _sporto$hop$Hop_Location$queryFromLocation = function (location) {
+	return _elm_lang$core$Dict$isEmpty(location.query) ? '' : A2(
+		_elm_lang$core$String$append,
+		'?',
+		A2(
+			_elm_lang$core$String$join,
+			'&',
+			A2(
+				_elm_lang$core$List$map,
+				function (_p1) {
+					var _p2 = _p1;
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p2._0,
+						A2(_elm_lang$core$Basics_ops['++'], '=', _p2._1));
+				},
+				A2(
+					_elm_lang$core$List$map,
+					function (_p3) {
+						var _p4 = _p3;
+						return {
+							ctor: '_Tuple2',
+							_0: _evancz$elm_http$Http$uriEncode(_p4._0),
+							_1: _evancz$elm_http$Http$uriEncode(_p4._1)
+						};
+					},
+					_elm_lang$core$Dict$toList(location.query)))));
+};
+var _sporto$hop$Hop_Location$locationFromUser = function (route) {
+	var normalized = A2(_elm_lang$core$String$startsWith, '#', route) ? route : A2(_elm_lang$core$Basics_ops['++'], '#', route);
+	return _sporto$hop$Hop_Location$parse(normalized);
+};
+var _sporto$hop$Hop_Location$dedupSlash = A3(
+	_elm_lang$core$Regex$replace,
+	_elm_lang$core$Regex$All,
+	_elm_lang$core$Regex$regex('/+'),
+	function (_p5) {
+		return '/';
+	});
+var _sporto$hop$Hop_Location$locationToFullPath = F2(
+	function (config, location) {
+		var query = _sporto$hop$Hop_Location$queryFromLocation(location);
+		var joined = A2(_elm_lang$core$String$join, '/', location.path);
+		var url = config.hash ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'#/',
+			A2(_elm_lang$core$Basics_ops['++'], joined, query)) : (_elm_lang$core$String$isEmpty(config.basePath) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'/',
+			A2(_elm_lang$core$Basics_ops['++'], joined, query)) : (_elm_lang$core$String$isEmpty(joined) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'/',
+			A2(_elm_lang$core$Basics_ops['++'], config.basePath, query)) : A2(
+			_elm_lang$core$Basics_ops['++'],
+			'/',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				config.basePath,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'/',
+					A2(_elm_lang$core$Basics_ops['++'], joined, query))))));
+		return _sporto$hop$Hop_Location$dedupSlash(url);
+	});

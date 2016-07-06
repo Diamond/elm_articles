@@ -78,7 +78,8 @@ decodeArticleList =
 -- Finally, build the decoder for each individual Article.Model
 decodeArticleData : Json.Decoder Article.Model
 decodeArticleData =
-  Json.object4 Article.Model
+  Json.object5 Article.Model
+    ("id" := Json.int)
     ("title" := Json.string)
     ("url" := Json.string)
     ("posted_by" := Json.string)

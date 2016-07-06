@@ -1,0 +1,44 @@
+var _sporto$hop$Hop_Matching$matchPathWithPathList = F3(
+	function (routeParsers, notFoundAction, path) {
+		matchPathWithPathList:
+		while (true) {
+			var _p0 = routeParsers;
+			if (_p0.ctor === '[]') {
+				return notFoundAction;
+			} else {
+				if (_p0._1.ctor === '[]') {
+					var _p1 = A2(_Bogdanp$elm_combine$Combine$parse, _p0._0.parser, path);
+					if (_p1._0.ctor === 'Ok') {
+						return _p1._0._0;
+					} else {
+						return notFoundAction;
+					}
+				} else {
+					var _p2 = A2(_Bogdanp$elm_combine$Combine$parse, _p0._0.parser, path);
+					if (_p2._0.ctor === 'Ok') {
+						return _p2._0._0;
+					} else {
+						var _v3 = _p0._1,
+							_v4 = notFoundAction,
+							_v5 = path;
+						routeParsers = _v3;
+						notFoundAction = _v4;
+						path = _v5;
+						continue matchPathWithPathList;
+					}
+				}
+			}
+		}
+	});
+var _sporto$hop$Hop_Matching$matchPath = F2(
+	function (config, path) {
+		return A3(_sporto$hop$Hop_Matching$matchPathWithPathList, config.matchers, config.notFound, path);
+	});
+var _sporto$hop$Hop_Matching$matchLocation = F2(
+	function (config, location) {
+		var pathString = A2(
+			_elm_lang$core$String$join,
+			'/',
+			A2(_elm_lang$core$List_ops['::'], '', location.path));
+		return A2(_sporto$hop$Hop_Matching$matchPath, config, pathString);
+	});

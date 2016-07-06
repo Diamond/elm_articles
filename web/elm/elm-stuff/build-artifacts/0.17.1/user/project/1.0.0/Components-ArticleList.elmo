@@ -1,6 +1,7 @@
-var _user$project$Components_ArticleList$decodeArticleData = A5(
-	_elm_lang$core$Json_Decode$object4,
+var _user$project$Components_ArticleList$decodeArticleData = A6(
+	_elm_lang$core$Json_Decode$object5,
 	_user$project$Article$Model,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'id', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'posted_by', _elm_lang$core$Json_Decode$string),

@@ -1,0 +1,52 @@
+var _user$project$Router$urlUpdate = F2(
+	function (_p0, model) {
+		var _p1 = _p0;
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{route: _p1._0, location: _p1._1});
+	});
+var _user$project$Router$Model = F2(
+	function (a, b) {
+		return {location: a, route: b};
+	});
+var _user$project$Router$initialModel = F2(
+	function (route, location) {
+		return A2(_user$project$Router$Model, location, route);
+	});
+var _user$project$Router$ShowArticleRoute = function (a) {
+	return {ctor: 'ShowArticleRoute', _0: a};
+};
+var _user$project$Router$EditArticleRoute = {ctor: 'EditArticleRoute'};
+var _user$project$Router$NewArticleRoute = {ctor: 'NewArticleRoute'};
+var _user$project$Router$ArticlesRoute = {ctor: 'ArticlesRoute'};
+var _user$project$Router$NotFoundRoute = {ctor: 'NotFoundRoute'};
+var _user$project$Router$MainRoute = {ctor: 'MainRoute'};
+var _user$project$Router$matchers = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(_sporto$hop$Hop_Matchers$match1, _user$project$Router$MainRoute, ''),
+		A2(_sporto$hop$Hop_Matchers$match1, _user$project$Router$ArticlesRoute, '/articles'),
+		A2(_sporto$hop$Hop_Matchers$match1, _user$project$Router$NewArticleRoute, '/articles/new'),
+		A2(_sporto$hop$Hop_Matchers$match1, _user$project$Router$EditArticleRoute, '/articles/edit'),
+		A4(_sporto$hop$Hop_Matchers$match3, _user$project$Router$ShowArticleRoute, '/articles/', _sporto$hop$Hop_Matchers$int, '/show')
+	]);
+var _user$project$Router$routerConfig = {hash: false, basePath: '', matchers: _user$project$Router$matchers, notFound: _user$project$Router$NotFoundRoute};
+var _user$project$Router$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		var _p3 = _p2._0;
+		var command = _elm_lang$navigation$Navigation$newUrl(
+			A4(_elm_lang$core$Debug$log, _p3, _sporto$hop$Hop$makeUrl, _user$project$Router$routerConfig, _p3));
+		return {ctor: '_Tuple2', _0: model, _1: command};
+	});
+var _user$project$Router$urlParser = _elm_lang$navigation$Navigation$makeParser(
+	function (_p4) {
+		return A2(
+			_sporto$hop$Hop$matchUrl,
+			_user$project$Router$routerConfig,
+			function (_) {
+				return _.href;
+			}(_p4));
+	});
+var _user$project$Router$NavigateTo = function (a) {
+	return {ctor: 'NavigateTo', _0: a};
+};

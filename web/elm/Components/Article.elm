@@ -4,7 +4,7 @@ import Html exposing (Html, span, strong, em, a, text)
 import Html.Attributes exposing (class, href)
 
 type alias Model =
-  { title : String, url : String, postedBy : String, postedOn: String }
+  { id: Int, title : String, url : String, postedBy : String, postedOn: String }
 
 view : Model -> Html a
 view model =

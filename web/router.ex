@@ -13,16 +13,16 @@ defmodule ElmArticles.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ElmArticles do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
-
   scope "/api", ElmArticles do
     pipe_through :api
 
-    resources "/articles", ArticleController, only: [:index]
+    resources "/articles", ArticleController, only: [:index, :show]
+  end
+
+  scope "/", ElmArticles do
+    pipe_through :browser # Use the default browser stack
+
+    get "/*path", PageController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,148 @@
+var _user$project$Components_ArticleShow$decodeArticleData = A6(
+	_elm_lang$core$Json_Decode$object5,
+	_user$project$Article$Model,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'id', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'title', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'url', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'posted_by', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'posted_on', _elm_lang$core$Json_Decode$string));
+var _user$project$Components_ArticleShow$decodeArticleFetch = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['data']),
+	_user$project$Components_ArticleShow$decodeArticleData);
+var _user$project$Components_ArticleShow$initialFetch = function (model) {
+	var url = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'/api/articles/',
+		_elm_lang$core$Basics$toString(model.id));
+	return A3(
+		_elm_lang$core$Task$perform,
+		function (a) {
+			return a;
+		},
+		function (a) {
+			return a;
+		},
+		_elm_lang$core$Task$succeed(
+			A2(_evancz$elm_http$Http$get, _user$project$Components_ArticleShow$decodeArticleFetch, url)));
+};
+var _user$project$Components_ArticleShow$initialModel = {
+	article: A5(_user$project$Article$Model, 0, '', '', '', ''),
+	id: 0
+};
+var _user$project$Components_ArticleShow$renderArticle = function (article) {
+	var _p0 = article.id;
+	if (_p0 === 0) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('No article loaded yet')
+				]));
+	} else {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$Article$view(article)
+				]));
+	}
+};
+var _user$project$Components_ArticleShow$Model = F2(
+	function (a, b) {
+		return {article: a, id: b};
+	});
+var _user$project$Components_ArticleShow$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
+};
+var _user$project$Components_ArticleShow$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
+};
+var _user$project$Components_ArticleShow$fetchArticle = function (model) {
+	var url = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'/api/articles/',
+		_elm_lang$core$Basics$toString(model.id));
+	return A3(
+		_elm_lang$core$Task$perform,
+		_user$project$Components_ArticleShow$FetchFail,
+		_user$project$Components_ArticleShow$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Components_ArticleShow$decodeArticleFetch, url));
+};
+var _user$project$Components_ArticleShow$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'NoOp':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'Fetch':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: _user$project$Components_ArticleShow$fetchArticle(model)
+				};
+			case 'FetchSucceed':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{article: _p1._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				var _p2 = _p1._0;
+				if (_p2.ctor === 'UnexpectedPayload') {
+					return A2(
+						_elm_lang$core$Debug$log,
+						_p2._0,
+						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+		}
+	});
+var _user$project$Components_ArticleShow$Fetch = {ctor: 'Fetch'};
+var _user$project$Components_ArticleShow$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('article-show')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Article Display')
+					])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Components_ArticleShow$Fetch),
+						_elm_lang$html$Html_Attributes$class('btn btn-primary')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Fetch Article')
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$Components_ArticleShow$renderArticle(model.article)
+					]))
+			]));
+};
+var _user$project$Components_ArticleShow$NoOp = {ctor: 'NoOp'};

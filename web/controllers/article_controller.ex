@@ -11,4 +11,9 @@ defmodule ElmArticles.ArticleController do
     }
     render(conn, "index.json", data)
   end
+
+  def show(conn, %{"id" => _article_id}) do
+    data = %{ article: %{ id: 1, title: "Article 1", url: "http://google.com", posted_by: "Brandon", posted_on: "06/20/16" } }
+    render(conn, "show.json", data)
+  end
 end

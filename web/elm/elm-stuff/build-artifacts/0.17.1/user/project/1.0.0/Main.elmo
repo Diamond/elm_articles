@@ -1,28 +1,397 @@
+var _user$project$Main$urlUpdate = F2(
+	function (_p0, model) {
+		var _p1 = _p0;
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					routerModel: A2(
+						_user$project$Router$urlUpdate,
+						{ctor: '_Tuple2', _0: _p1._0, _1: _p1._1},
+						model.routerModel)
+				}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$Main$editArticleView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Edit Article')
+					])),
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Title:')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('URL:')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('btn btn-primary')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Save')
+					]))
+			]));
+};
+var _user$project$Main$newArticleView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('New Article')
+					])),
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Title:')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('URL:')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('btn btn-primary')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Save')
+					]))
+			]));
+};
+var _user$project$Main$welcomeView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Welcome To ElmArticles')
+					]))
+			]));
+};
+var _user$project$Main$notFoundView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('404: Route Not Found')
+					]))
+			]));
+};
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$initialModel = {articleListModel: _user$project$Components_ArticleList$initialModel};
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$Model = function (a) {
-	return {articleListModel: a};
+var _user$project$Main$initialModel = F2(
+	function (route, location) {
+		return {
+			articleListModel: _user$project$Components_ArticleList$initialModel,
+			routerModel: A2(_user$project$Router$initialModel, route, location),
+			articleShowModel: _user$project$Components_ArticleShow$initialModel
+		};
+	});
+var _user$project$Main$init = function (_p2) {
+	var _p3 = _p2;
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_user$project$Main$initialModel, _p3._0, _p3._1),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
 };
+var _user$project$Main$Model = F3(
+	function (a, b, c) {
+		return {articleListModel: a, routerModel: b, articleShowModel: c};
+	});
+var _user$project$Main$ArticleShowMsg = function (a) {
+	return {ctor: 'ArticleShowMsg', _0: a};
+};
+var _user$project$Main$showArticleView = F2(
+	function (model, articleId) {
+		return A2(
+			_elm_lang$html$Html_App$map,
+			_user$project$Main$ArticleShowMsg,
+			_user$project$Components_ArticleShow$view(model.articleShowModel));
+	});
+var _user$project$Main$RouterMsg = function (a) {
+	return {ctor: 'RouterMsg', _0: a};
+};
+var _user$project$Main$convertFromRouter = function (template) {
+	return A2(_elm_lang$html$Html_App$map, _user$project$Main$RouterMsg, template);
+};
+var _user$project$Main$header = _user$project$Main$convertFromRouter(
+	A2(
+		_elm_lang$html$Html$ul,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$li,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Router$NavigateTo(''))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Home')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$li,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Router$NavigateTo('/articles'))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Articles')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$li,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Router$NavigateTo('/articles/new'))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('New Article')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$li,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Router$NavigateTo('/articles/edit'))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Edit Article')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$li,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Router$NavigateTo('/articles/1/show'))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Show Article')
+							]))
+					]))
+			])));
 var _user$project$Main$ArticleListMsg = function (a) {
 	return {ctor: 'ArticleListMsg', _0: a};
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		var _p1 = A2(_user$project$Components_ArticleList$update, _p0._0, model.articleListModel);
-		var updatedModel = _p1._0;
-		var cmd = _p1._1;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{articleListModel: updatedModel}),
-			_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$ArticleListMsg, cmd)
-		};
+		var _p4 = msg;
+		switch (_p4.ctor) {
+			case 'ArticleListMsg':
+				var _p5 = A2(_user$project$Components_ArticleList$update, _p4._0, model.articleListModel);
+				var updatedModel = _p5._0;
+				var cmd = _p5._1;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{articleListModel: updatedModel}),
+					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$ArticleListMsg, cmd)
+				};
+			case 'RouterMsg':
+				var _p6 = A2(_user$project$Router$update, _p4._0, model.routerModel);
+				var updatedModel = _p6._0;
+				var cmd = _p6._1;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{routerModel: updatedModel}),
+					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$RouterMsg, cmd)
+				};
+			default:
+				var _p7 = A2(_user$project$Components_ArticleShow$update, _p4._0, model.articleShowModel);
+				var updatedModel = _p7._0;
+				var cmd = _p7._1;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{articleShowModel: updatedModel}),
+					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$ArticleShowMsg, cmd)
+				};
+		}
 	});
+var _user$project$Main$articlesView = function (model) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Main$ArticleListMsg,
+		_user$project$Components_ArticleList$view(model.articleListModel));
+};
+var _user$project$Main$pageView = function (model) {
+	var _p8 = model.routerModel.route;
+	switch (_p8.ctor) {
+		case 'MainRoute':
+			return _user$project$Main$welcomeView(model);
+		case 'ArticlesRoute':
+			return _user$project$Main$articlesView(model);
+		case 'NotFoundRoute':
+			return _user$project$Main$notFoundView(model);
+		case 'EditArticleRoute':
+			return _user$project$Main$editArticleView(model);
+		case 'NewArticleRoute':
+			return _user$project$Main$newArticleView(model);
+		default:
+			return A2(_user$project$Main$showArticleView, model, _p8._0);
+	}
+};
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -32,13 +401,13 @@ var _user$project$Main$view = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$html$Html_App$map,
-				_user$project$Main$ArticleListMsg,
-				_user$project$Components_ArticleList$view(model.articleListModel))
+				_user$project$Main$header,
+				_user$project$Main$pageView(model)
 			]));
 };
 var _user$project$Main$main = {
-	main: _elm_lang$html$Html_App$program(
-		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})
+	main: A2(
+		_elm_lang$navigation$Navigation$program,
+		_user$project$Router$urlParser,
+		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, urlUpdate: _user$project$Main$urlUpdate, subscriptions: _user$project$Main$subscriptions})
 };

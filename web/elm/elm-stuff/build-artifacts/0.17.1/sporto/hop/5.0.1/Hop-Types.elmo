@@ -1,0 +1,21 @@
+var _sporto$hop$Hop_Types$newQuery = _elm_lang$core$Dict$empty;
+var _sporto$hop$Hop_Types$newLocation = {
+	query: _sporto$hop$Hop_Types$newQuery,
+	path: _elm_lang$core$Native_List.fromArray(
+		[])
+};
+var _sporto$hop$Hop_Types$Location = F2(
+	function (a, b) {
+		return {path: a, query: b};
+	});
+var _sporto$hop$Hop_Types$PathMatcher = F2(
+	function (a, b) {
+		return {parser: a, segments: b};
+	});
+var _sporto$hop$Hop_Types$Config = F4(
+	function (a, b, c, d) {
+		return {basePath: a, hash: b, matchers: c, notFound: d};
+	});
+var _sporto$hop$Hop_Types$Router = function (a) {
+	return {run: a};
+};

@@ -1,0 +1,81 @@
+var _Bogdanp$elm_combine$Combine_Num$digit = function () {
+	var toDigit = function (c) {
+		return _elm_lang$core$Char$toCode(c) - _elm_lang$core$Char$toCode(
+			_elm_lang$core$Native_Utils.chr('0'));
+	};
+	return A2(
+		_Bogdanp$elm_combine$Combine_Infix_ops['<?>'],
+		A2(_Bogdanp$elm_combine$Combine_Infix_ops['<$>'], toDigit, _Bogdanp$elm_combine$Combine_Char$digit),
+		'expected a digit');
+}();
+var _Bogdanp$elm_combine$Combine_Num$sign = A2(
+	_Bogdanp$elm_combine$Combine$optional,
+	1,
+	_Bogdanp$elm_combine$Combine$choice(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_Bogdanp$elm_combine$Combine_Infix_ops['<$'],
+				1,
+				_Bogdanp$elm_combine$Combine$string('+')),
+				A2(
+				_Bogdanp$elm_combine$Combine_Infix_ops['<$'],
+				-1,
+				_Bogdanp$elm_combine$Combine$string('-'))
+			])));
+var _Bogdanp$elm_combine$Combine_Num$unwrap = F2(
+	function (f, s) {
+		var _p0 = f(s);
+		if (_p0.ctor === 'Ok') {
+			return _p0._0;
+		} else {
+			return _elm_lang$core$Native_Utils.crashCase(
+				'Combine.Num',
+				{
+					start: {line: 19, column: 3},
+					end: {line: 24, column: 73}
+				},
+				_p0)(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'impossible state in Combine.Num.unwrap: ',
+					_elm_lang$core$Basics$toString(_p0._0)));
+		}
+	});
+var _Bogdanp$elm_combine$Combine_Num$toInt = _Bogdanp$elm_combine$Combine_Num$unwrap(_elm_lang$core$String$toInt);
+var _Bogdanp$elm_combine$Combine_Num$int = A2(
+	_Bogdanp$elm_combine$Combine_Infix_ops['<?>'],
+	A2(
+		_Bogdanp$elm_combine$Combine$andMap,
+		A2(
+			_Bogdanp$elm_combine$Combine$map,
+			F2(
+				function (x, y) {
+					return x * y;
+				}),
+			_Bogdanp$elm_combine$Combine_Num$sign),
+		A2(
+			_Bogdanp$elm_combine$Combine_Infix_ops['<$>'],
+			_Bogdanp$elm_combine$Combine_Num$toInt,
+			_Bogdanp$elm_combine$Combine$regex('(0|[1-9][0-9]*)'))),
+	'expected an integer');
+var _Bogdanp$elm_combine$Combine_Num$toFloat = _Bogdanp$elm_combine$Combine_Num$unwrap(_elm_lang$core$String$toFloat);
+var _Bogdanp$elm_combine$Combine_Num$float = A2(
+	_Bogdanp$elm_combine$Combine_Infix_ops['<?>'],
+	A2(
+		_Bogdanp$elm_combine$Combine$andMap,
+		A2(
+			_Bogdanp$elm_combine$Combine$map,
+			function (_p2) {
+				return F2(
+					function (x, y) {
+						return x * y;
+					})(
+					_elm_lang$core$Basics$toFloat(_p2));
+			},
+			_Bogdanp$elm_combine$Combine_Num$sign),
+		A2(
+			_Bogdanp$elm_combine$Combine_Infix_ops['<$>'],
+			_Bogdanp$elm_combine$Combine_Num$toFloat,
+			_Bogdanp$elm_combine$Combine$regex('(0|[1-9][0-9]*)(\\.[0-9]+)'))),
+	'expected a float');
