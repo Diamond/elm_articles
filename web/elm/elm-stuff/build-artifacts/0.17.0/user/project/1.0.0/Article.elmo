@@ -47,7 +47,7 @@ var _user$project$Article$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Article$Model = F5(
-	function (a, b, c, d, e) {
-		return {title: a, url: b, postedBy: c, postedOn: d, favorite: e};
+var _user$project$Article$Model = F4(
+	function (a, b, c, d) {
+		return {title: a, url: b, postedBy: c, postedOn: d};
 	});
