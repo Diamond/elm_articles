@@ -83,3 +83,4 @@ decodeArticleData =
     ("url" := Json.string)
     ("posted_by" := Json.string)
     ("posted_on" := Json.string)
+

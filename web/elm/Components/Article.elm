@@ -12,3 +12,4 @@ view model =
     a [ href model.url ] [ strong [ ] [ text model.title ] ]
     , span [ ] [ text (" Posted by: " ++ model.postedBy) ]
     , em [ ] [ text (" (posted on: " ++ model.postedOn ++ ")") ] ]
+
