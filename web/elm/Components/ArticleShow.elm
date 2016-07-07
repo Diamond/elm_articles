@@ -18,7 +18,6 @@ type alias Model =
 
 type Msg
   = NoOp
-  | Init
   | Fetch
   | FetchSucceed Article.Model
   | FetchFail Http.Error
@@ -28,8 +27,6 @@ update msg model =
   case msg of
     NoOp ->
       (model, Cmd.none)
-    Init ->
-      (model, initialFetch model)
     Fetch ->
       (model, fetchArticle model)
     FetchSucceed article ->
@@ -85,13 +82,3 @@ decodeArticleData =
     ("url" := Json.string)
     ("posted_by" := Json.string)
     ("posted_on" := Json.string)
-
--- Task.succeed Task
--- Task.perform identity identity
-
-initialFetch : Model -> Cmd Msg
-initialFetch model =
-  let
-    url = ("/api/articles/" ++ (toString model.id))
-  in
-    Task.perform (\a -> a) (\a -> a) (Task.succeed (Http.get decodeArticleFetch url))

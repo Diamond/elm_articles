@@ -7,6 +7,8 @@ import Hop exposing (makeUrl, makeUrlFromLocation, matchUrl, setQuery)
 import Hop.Types exposing (Config, Query, Location, PathMatcher, Router)
 import Hop.Matchers exposing (..)
 
+import Debug
+
 -- DEFINE ROUTE UNION TYPES
 type Route
   = MainRoute
@@ -62,6 +64,7 @@ update msg model =
 
 urlParser : Navigation.Parser ( Route, Location )
 urlParser =
+  Debug.log "What about me"
   Navigation.makeParser (.href >> matchUrl routerConfig)
 
 urlUpdate : ( Route, Hop.Types.Location ) -> Model -> Model

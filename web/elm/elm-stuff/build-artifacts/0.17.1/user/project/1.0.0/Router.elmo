@@ -38,7 +38,10 @@ var _user$project$Router$update = F2(
 			A4(_elm_lang$core$Debug$log, _p3, _sporto$hop$Hop$makeUrl, _user$project$Router$routerConfig, _p3));
 		return {ctor: '_Tuple2', _0: model, _1: command};
 	});
-var _user$project$Router$urlParser = _elm_lang$navigation$Navigation$makeParser(
+var _user$project$Router$urlParser = A3(
+	_elm_lang$core$Debug$log,
+	'What about me',
+	_elm_lang$navigation$Navigation$makeParser,
 	function (_p4) {
 		return A2(
 			_sporto$hop$Hop$matchUrl,

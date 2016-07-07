@@ -10604,22 +10604,6 @@ var _user$project$Components_ArticleShow$decodeArticleFetch = A2(
 	_elm_lang$core$Native_List.fromArray(
 		['data']),
 	_user$project$Components_ArticleShow$decodeArticleData);
-var _user$project$Components_ArticleShow$initialFetch = function (model) {
-	var url = A2(
-		_elm_lang$core$Basics_ops['++'],
-		'/api/articles/',
-		_elm_lang$core$Basics$toString(model.id));
-	return A3(
-		_elm_lang$core$Task$perform,
-		function (a) {
-			return a;
-		},
-		function (a) {
-			return a;
-		},
-		_elm_lang$core$Task$succeed(
-			A2(_evancz$elm_http$Http$get, _user$project$Components_ArticleShow$decodeArticleFetch, url)));
-};
 var _user$project$Components_ArticleShow$initialModel = {
 	article: A5(_user$project$Article$Model, 0, '', '', '', ''),
 	id: 0
@@ -10780,7 +10764,10 @@ var _user$project$Router$update = F2(
 			A4(_elm_lang$core$Debug$log, _p3, _sporto$hop$Hop$makeUrl, _user$project$Router$routerConfig, _p3));
 		return {ctor: '_Tuple2', _0: model, _1: command};
 	});
-var _user$project$Router$urlParser = _elm_lang$navigation$Navigation$makeParser(
+var _user$project$Router$urlParser = A3(
+	_elm_lang$core$Debug$log,
+	'What about me',
+	_elm_lang$navigation$Navigation$makeParser,
 	function (_p4) {
 		return A2(
 			_sporto$hop$Hop$matchUrl,
@@ -10793,22 +10780,6 @@ var _user$project$Router$NavigateTo = function (a) {
 	return {ctor: 'NavigateTo', _0: a};
 };
 
-var _user$project$Main$urlUpdate = F2(
-	function (_p0, model) {
-		var _p1 = _p0;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					routerModel: A2(
-						_user$project$Router$urlUpdate,
-						{ctor: '_Tuple2', _0: _p1._0, _1: _p1._1},
-						model.routerModel)
-				}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
 var _user$project$Main$editArticleView = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -10996,11 +10967,11 @@ var _user$project$Main$initialModel = F2(
 			articleShowModel: _user$project$Components_ArticleShow$initialModel
 		};
 	});
-var _user$project$Main$init = function (_p2) {
-	var _p3 = _p2;
+var _user$project$Main$init = function (_p0) {
+	var _p1 = _p0;
 	return {
 		ctor: '_Tuple2',
-		_0: A2(_user$project$Main$initialModel, _p3._0, _p3._1),
+		_0: A2(_user$project$Main$initialModel, _p1._0, _p1._1),
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };
@@ -11017,6 +10988,49 @@ var _user$project$Main$showArticleView = F2(
 			_elm_lang$html$Html_App$map,
 			_user$project$Main$ArticleShowMsg,
 			_user$project$Components_ArticleShow$view(model.articleShowModel));
+	});
+var _user$project$Main$urlUpdate = F2(
+	function (_p2, model) {
+		var _p3 = _p2;
+		var _p6 = _p3._0;
+		var _p5 = _p3._1;
+		var _p4 = _p6;
+		if (_p4.ctor === 'ShowArticleRoute') {
+			return A2(
+				_elm_lang$core$Debug$log,
+				'BEGIN',
+				{
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							routerModel: A2(
+								_user$project$Router$urlUpdate,
+								{ctor: '_Tuple2', _0: _p6, _1: _p5},
+								model.routerModel)
+						}),
+					_1: A2(
+						_elm_lang$core$Platform_Cmd$map,
+						_user$project$Main$ArticleShowMsg,
+						_user$project$Components_ArticleShow$fetchArticle(model.articleShowModel))
+				});
+		} else {
+			return A2(
+				_elm_lang$core$Debug$log,
+				'TWO',
+				{
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							routerModel: A2(
+								_user$project$Router$urlUpdate,
+								{ctor: '_Tuple2', _0: _p6, _1: _p5},
+								model.routerModel)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				});
+		}
 	});
 var _user$project$Main$RouterMsg = function (a) {
 	return {ctor: 'RouterMsg', _0: a};
@@ -11127,12 +11141,12 @@ var _user$project$Main$ArticleListMsg = function (a) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p4 = msg;
-		switch (_p4.ctor) {
+		var _p7 = msg;
+		switch (_p7.ctor) {
 			case 'ArticleListMsg':
-				var _p5 = A2(_user$project$Components_ArticleList$update, _p4._0, model.articleListModel);
-				var updatedModel = _p5._0;
-				var cmd = _p5._1;
+				var _p8 = A2(_user$project$Components_ArticleList$update, _p7._0, model.articleListModel);
+				var updatedModel = _p8._0;
+				var cmd = _p8._1;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -11141,9 +11155,9 @@ var _user$project$Main$update = F2(
 					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$ArticleListMsg, cmd)
 				};
 			case 'RouterMsg':
-				var _p6 = A2(_user$project$Router$update, _p4._0, model.routerModel);
-				var updatedModel = _p6._0;
-				var cmd = _p6._1;
+				var _p9 = A2(_user$project$Router$update, _p7._0, model.routerModel);
+				var updatedModel = _p9._0;
+				var cmd = _p9._1;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -11152,9 +11166,9 @@ var _user$project$Main$update = F2(
 					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$RouterMsg, cmd)
 				};
 			default:
-				var _p7 = A2(_user$project$Components_ArticleShow$update, _p4._0, model.articleShowModel);
-				var updatedModel = _p7._0;
-				var cmd = _p7._1;
+				var _p10 = A2(_user$project$Components_ArticleShow$update, _p7._0, model.articleShowModel);
+				var updatedModel = _p10._0;
+				var cmd = _p10._1;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -11171,8 +11185,8 @@ var _user$project$Main$articlesView = function (model) {
 		_user$project$Components_ArticleList$view(model.articleListModel));
 };
 var _user$project$Main$pageView = function (model) {
-	var _p8 = model.routerModel.route;
-	switch (_p8.ctor) {
+	var _p11 = model.routerModel.route;
+	switch (_p11.ctor) {
 		case 'MainRoute':
 			return _user$project$Main$welcomeView(model);
 		case 'ArticlesRoute':
@@ -11184,7 +11198,7 @@ var _user$project$Main$pageView = function (model) {
 		case 'NewArticleRoute':
 			return _user$project$Main$newArticleView(model);
 		default:
-			return A2(_user$project$Main$showArticleView, model, _p8._0);
+			return A2(_user$project$Main$showArticleView, model, _p11._0);
 	}
 };
 var _user$project$Main$view = function (model) {

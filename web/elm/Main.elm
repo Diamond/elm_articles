@@ -145,10 +145,16 @@ pageView model =
 
 urlUpdate : ( Router.Route, Location ) -> Model -> ( Model, Cmd Msg )
 urlUpdate ( route, location ) model =
-  ({ model | routerModel = (Router.urlUpdate (route, location) model.routerModel) }, Cmd.none)
+  case route of
+    Router.ShowArticleRoute articleId ->
+      Debug.log "BEGIN"
+      ({ model | routerModel = (Router.urlUpdate (route, location) model.routerModel) }, (Cmd.map ArticleShowMsg (ArticleShow.fetchArticle model.articleShowModel)))
+    _ ->
+      Debug.log "TWO"
+      ({ model | routerModel = (Router.urlUpdate (route, location) model.routerModel) }, Cmd.none)
+
 
 -- MAIN
-
 main : Program Never
 main =
   Navigation.program Router.urlParser

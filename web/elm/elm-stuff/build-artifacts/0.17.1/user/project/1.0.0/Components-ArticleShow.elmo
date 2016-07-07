@@ -11,22 +11,6 @@ var _user$project$Components_ArticleShow$decodeArticleFetch = A2(
 	_elm_lang$core$Native_List.fromArray(
 		['data']),
 	_user$project$Components_ArticleShow$decodeArticleData);
-var _user$project$Components_ArticleShow$initialFetch = function (model) {
-	var url = A2(
-		_elm_lang$core$Basics_ops['++'],
-		'/api/articles/',
-		_elm_lang$core$Basics$toString(model.id));
-	return A3(
-		_elm_lang$core$Task$perform,
-		function (a) {
-			return a;
-		},
-		function (a) {
-			return a;
-		},
-		_elm_lang$core$Task$succeed(
-			A2(_evancz$elm_http$Http$get, _user$project$Components_ArticleShow$decodeArticleFetch, url)));
-};
 var _user$project$Components_ArticleShow$initialModel = {
 	article: A5(_user$project$Article$Model, 0, '', '', '', ''),
 	id: 0
